@@ -29,18 +29,3 @@ Note that if the driver is C++, MSVC may not run the debug build. Release config
 If using libpostal in a multithreaded way, each thread needs to implement its own concurrency around its
 libpostal API calls.
 
--------------------
-Changelog
--------------------
-
-added new source files: drand48.h, drand48.c, strdup.h, strdup.c to supply missing functions  
-Added DLLEXPORT macro to several source files  
-src/Makefile.am: -D UTF8PROC_EXPORTS added to CFLAGS so utf8proc builds  
-&nbsp;&nbsp;&nbsp;added -no-undefined to libpostal_la_LDFLAGS  
-&nbsp;&nbsp;&nbsp;added drand48.c to beginning of libscanner_la_SOURCES  
-&nbsp;&nbsp;&nbsp;removed code building binaries. Some porting is needed for these.  
-configure.ac: change LT_INIT([shared]) to LT_INIT([win32-dll])  
-In build script, seems necessary to write, eg: C:\libpostal\libpostal_data as /c/libpostal//libpostal_data.   
-Note double slash.  
-Changed instances of fopen(somefile, "r") to binary mode "rb" to fix premature EOF when encountering 0x1a byte.  
-Changed PATH_SEPARATOR for win32 to "/" from "\\". Windows accepts forward slashes so let's avoid escape sequence headaches.
