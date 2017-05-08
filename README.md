@@ -1,4 +1,4 @@
-2Libpostal for Windows
+Libpostal for Windows
 =========================
 ------------------------
 Building libpostal
