@@ -1,4 +1,4 @@
-Libpostal for Windows
+2Libpostal for Windows
 =========================
 ------------------------
 Building libpostal
@@ -7,8 +7,7 @@ Building libpostal
 Install MSYS.  
 Use pacman to install autoconf, automake, and libtools: pacman -S yourpackage  
 Run build_libpostal.sh from MinGW.    
-You should now have libpostal-1.dll (henceforth assumed to be renamed to libpostal.dll), which will be 32 bit if 
-you used MinGW32 and 64 bit if you used MinGW64.  
+You should now have libpostal-1.dll (henceforth assumed to be renamed to libpostal.dll)  
 There is also libpostal.dll.a - don't confuse them! 
 
 -------------------
