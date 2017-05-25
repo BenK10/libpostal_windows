@@ -1,5 +1,9 @@
 Libpostal for Windows
 =========================
+
+This project has some files from [libpostal](https://github.com/openvenues/libpostal) modified so that the project is buildable in Windows on MinGW/MSYS2. Use these files in place of the originals.
+See the changelog for details about these changes.
+
 ------------------------
 Building libpostal
 ------------------------
