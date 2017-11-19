@@ -31,17 +31,15 @@ libscanner_la_SOURCES = klib/drand48.c scanner.c
 libscanner_la_CFLAGS = $(CFLAGS_O0) $(CFLAGS_SCANNER_EXTRA)
 
 
-# program building skipped here
+# program building skipped here (requires porting)
 
 pkginclude_HEADERS = libpostal.h
 
-# skip data download to make compilation faster (for testing)
-# alternatively, set enable-data-download false in configure script
 
-# if DOWNLOAD_DATA
-# all-local:
-#	${srcdir}/libpostal_data download all $(datadir)/libpostal
-# endif
+if DOWNLOAD_DATA
+all-local:
+	${srcdir}/libpostal_data download all $(datadir)/libpostal
+endif
 
 lexer: scanner.re
 	re2c -F -s -b -8 -o scanner.c scanner.re
