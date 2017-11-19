@@ -7,7 +7,7 @@ See the changelog for details about these changes.
 ------------------------
 Building libpostal
 ------------------------
-These instructions assume a 64-bit machine. Your version of MSYS2, and gcc toolchain and parameters for vcvaesall and lib will be different for 32-bit.
+These instructions assume a 64-bit machine. Your version of MSYS2, and gcc toolchain and parameters for vcvarsall and lib will be different for 32-bit.
 
 Install MSYS2.  
 Use pacman to install autoconf, automake, make, libtools, and mingw-w64-x86_64-gcc (the gcc toolchain): pacman -S yourpackage  
