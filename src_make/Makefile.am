@@ -2,7 +2,7 @@
 
 # Inherited from autoconf / user-specified 
 CFLAGS_CONF = @CFLAGS@
-CFLAGS_BASE = -Wall -Wextra -Wno-unused-function -Wformat -Werror=format-security -Winit-self -Wno-sign-compare --output-def,libpostaldll.def -DLIBPOSTAL_DATA_DIR='"$(datadir)/libpostal"' -g $(CFLAGS_CONF)
+CFLAGS_BASE = -Wall -Wextra -Wno-unused-function -Wformat -Werror=format-security -Winit-self -Wno-sign-compare -DLIBPOSTAL_DATA_DIR='"$(datadir)/libpostal"' -g $(CFLAGS_CONF)
 CFLAGS_O0 = $(CFLAGS_BASE) -O0
 CFLAGS_O1 = $(CFLAGS_BASE) -O1
 CFLAGS_O2 = $(CFLAGS_BASE) -O2
@@ -18,6 +18,7 @@ lib_LTLIBRARIES = libpostal.la
 libpostal_la_SOURCES = strndup.c libpostal.c address_dictionary.c transliterate.c tokens.c trie.c trie_search.c trie_utils.c string_utils.c file_utils.c numex.c utf8proc/utf8proc.c cmp/cmp.c normalize.c features.c unicode_scripts.c address_parser.c address_parser_io.c averaged_perceptron.c crf.c crf_context.c sparse_matrix.c averaged_perceptron_tagger.c graph.c graph_builder.c language_classifier.c language_features.c logistic_regression.c logistic.c minibatch.c float_utils.c ngrams.c
 libpostal_la_LIBADD = libscanner.la $(CBLAS_LIBS)
 libpostal_la_CFLAGS = $(CFLAGS_O2)
+# use -no-undefined if using LTINIT[(win32-dll)]
 libpostal_la_LDFLAGS = -version-info @LIBPOSTAL_SO_VERSION@ -no-undefined
 
 dist_bin_SCRIPTS = libpostal_data
@@ -34,10 +35,13 @@ libscanner_la_CFLAGS = $(CFLAGS_O0) $(CFLAGS_SCANNER_EXTRA)
 
 pkginclude_HEADERS = libpostal.h
 
-if DOWNLOAD_DATA
-all-local:
-	${srcdir}/libpostal_data download all $(datadir)/libpostal
-endif
+# skip data download to make compilation faster (for testing)
+# alternatively, set enable-data-download false in configure script
+
+# if DOWNLOAD_DATA
+# all-local:
+#	${srcdir}/libpostal_data download all $(datadir)/libpostal
+# endif
 
 lexer: scanner.re
 	re2c -F -s -b -8 -o scanner.c scanner.re
