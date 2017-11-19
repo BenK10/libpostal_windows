@@ -1,40 +1,5 @@
 # adds DLLEXPORT macros to functions listed in file
 
-
-# function that gets lines from dllexports_signatures list
-
-# for each file names on that list, make a copy in the main libpostal_windows directory with "backup" appended to the name
-
-# function that goes through the source line by line and checks whether a line in the list is a substring of it.
-# if it is, prepend DLLEXPORT to that line
-# write out file
-
-
-# if MAIN, get arg, which is a .txt file with signatures to use. Abort if number of args is not 1
-
-
-# ======= pseudocode =========
-#process ref file line by line
-
-#dict{} lines (key: file name value: list of lines)
-#for each line
-#  if line begins with '[' and ends with ']'
-#  enter the content in between them as dictionary key
-#  and all subsequent lines into that key's list
-  
-#for each key (=filename) in dictionary 
-#  copy the file to main directory with suffix "original"
-  
-#for each key (=filename) in dictionary
-#  for each src_line in src_file
-#    for each ref_line in list
-#     if ref_line is a substring of src_line
-#       prepend DLLEXPORT to src_line
-#       break       
-#    add src_line to output buffer
-#write out modified src file    
-
-# =============================
 import sys
 import os
 import shutil
