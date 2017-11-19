@@ -17,7 +17,7 @@ These instructions assume a 64-bit machine. Your version of MSYS2, and gcc toolc
 
 Install MSYS2.  
 Use pacman to install autoconf, automake, make, libtools, mingw-w64-x86_64-gcc (the gcc toolchain), and Python: pacman -S yourpackage
-Clone libpostal to your working directory or use curl from MinGW: curl -sL https://github.com/openvenues/libpostal/tarball/master | tar xz
+Clone libpostal to your working directory or use curl from MinGW: `curl -sL https://github.com/openvenues/libpostal/tarball/master | tar xz`
 Rename the downloaded folder to "libpostal" (curl's rename function doesn't seem to work from MinGW so you'll have to do this manually)
 Run build_libpostal_windows.sh from MinGW. This script will copy some files and call a Python script that injects `declspec(dllexport` into the code in places defined in dllexports.txt.    
 You should now have libpostal-1.dll (henceforth assumed to be renamed to libpostal.dll)  
@@ -31,8 +31,8 @@ Build a .lib out of libpostal.dll. It needs to be the same bitness as the DLL:
   -method 1: Digital Mars' implib tool  
   -method 2: MSVC lib tool.   
      &nbsp;&nbsp;&nbsp;Run the following commands from VC\bin directory  
-     &nbsp;&nbsp;&nbsp;vcvarsall x64 (not sure if this step is necessary)
-     &nbsp;&nbsp;&nbsp;lib /def:libpostal.def /out:libpostal.lib /machine:x64 
+     &nbsp;&nbsp;&nbsp;`vcvarsall x64` (not sure if this step is necessary)
+     &nbsp;&nbsp;&nbsp;`lib /def:libpostal.def /out:libpostal.lib /machine:x64` 
 
 In your driver program, include libpostal.h (surround with extern "C" if the driver is C++)  
 Link the driver to libpostal.lib and put libpostal.dll in the .exe's directory.  
